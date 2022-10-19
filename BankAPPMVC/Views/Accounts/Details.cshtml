@@ -1,0 +1,37 @@
+﻿@model BankPPP.Models.Account
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h4>Account Details</h4>
+<hr />
+<div style ="max-width:700px;min-height:300px">
+    
+    <dl class="dl-horizontal">
+
+        <dd>
+            @Html.DisplayNameFor(model => model.accountnumber) : 
+            @Html.DisplayFor(model => model.accountnumber)
+        </dd>
+        <dd>
+            @Html.DisplayNameFor(model => model.accountname) : 
+            @Html.DisplayFor(model => model.accountname)
+        </dd>
+          
+        <dd>
+            @Html.DisplayNameFor(model => model.balance )  :
+            @Html.DisplayFor(model => model.balance)
+        </dd>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.date_created ) : 
+            @Html.DisplayFor(model => model.date_created)
+        </dd>
+    </dl>
+</div>
+ 
+<div style="margin-bottom:20px">
+    @Html.ActionLink("Edit", "Edit", new { accountnumber = Model.accountnumber }) |
+    @Html.ActionLink("Back to List", "Index")
+</div>

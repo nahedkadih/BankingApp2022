@@ -1,0 +1,69 @@
+﻿@model List<BankPPP.Models.TransactionView>
+
+
+@{
+    ViewBag.Title = "All Transactions";
+}
+
+<h2>All Transactions</h2>
+
+<p>
+    @Html.ActionLink(" Initiate a Transfer", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            From Account
+        </th>
+        <th>
+            To Account
+        </th>
+
+        <th>
+            Transaction Time
+
+        </th>
+
+        <th>
+            Amount Debited
+
+        </th>
+
+        <th>
+            From Account Balance
+
+        </th>
+        <th>
+            To Account Balance
+
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromAccount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToAccount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionTime)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountDebited)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromAccountBalance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToAccountBalance)
+            </td>
+        </tr>
+    }
+
+</table>
+ 

@@ -1,0 +1,45 @@
+﻿@model BankPPP.Models.Transaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h4>Transaction Details</h4>
+
+<div>
+ 
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dd>
+            @Html.DisplayNameFor(model => model.transactionId)
+            @Html.DisplayFor(model => model.transactionId)
+        <dd> 
+        <dd>
+            @Html.DisplayNameFor(model => model.from_account)
+            @Html.DisplayFor(model => model.from_account)
+        <dd>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.to_account)
+            @Html.DisplayFor(model => model.to_account)
+        </dd>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.amount )  
+            @Html.DisplayFor(model => model.amount)
+        <dd>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.date_created )
+            @Html.DisplayFor(model => model.date_created)
+        </dd>
+    </dl>
+</div>
+<br />
+<br />
+<br />
+<p>
+    @Html.ActionLink("Back to Accounts", "Index","Home")
+    @Html.ActionLink("Back to Transactions", "Index","Transactions")
+</p>

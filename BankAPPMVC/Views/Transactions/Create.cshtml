@@ -1,0 +1,67 @@
+﻿@model BankPPP.Models.TransferView
+@{
+    ViewBag.Title = "Initiate a Transfer";
+}
+ 
+
+<h4>Create Transaction</h4>
+<hr />
+
+@using (Html.BeginForm("Create", "Transactions", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="max-width:300px">
+       
+        <div class="form-group">
+            <label>
+                From Account
+                @Html.DropDownListFor( x => x.SelectedfromAccount, new SelectList(Model.fromAccount, "accountnumber", "accountname"), "--Please select--", new  { id="idaccountnumber",required = true , @class = "form-control" })
+            </label><br /><br />
+             @Html.ValidationMessageFor(model => model.fromAccount, "", new { @class = "text-danger" })
+
+            <label>
+                To Account
+                @Html.DropDownListFor( x => x.SelectedtoAccount,new SelectList(Model.toAccount, "accountnumber", "accountname"), "--Please select--", new  {id="idaccountname",required = true , @class = "form-control" })
+            </label><br />
+            @Html.ValidationMessageFor(model => model.toAccount , "", new { @class = "text-danger" })
+            @Html.ValidationMessage("SameAccount")
+            <br /><label>
+                Amount To transfer
+                @Html.EditorFor( x => x.amount, new { htmlAttributes = new { @class = "form-control" } })
+            </label><br /> 
+            @Html.ValidationMessageFor(model => model.amount , "", new {@class = "text-danger" })
+            <br /> <br />
+            <label> 
+                <input id="idSubmit" type="submit"  value="Transfer" class="btn btn-primary" />
+            </label>
+        </div>
+        
+
+
+        <br /> <br />
+    </div>
+}
+
+<div style="margin-bottom:20px">
+    @Html.ActionLink("View all previous transactions", "Index")
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            //$("#idSubmit").click(function (e) {
+
+            //    var val1 = $('#idaccountname').val();
+            //    var val2 = $('#idaccountnumber').val();
+            //    if (val1 == val2) {
+
+            //    }
+            //    e.preventDefault();
+            //    return false;
+               
+            //})
+        });
+    </script>
+
+}

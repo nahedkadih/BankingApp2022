@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Welcome to Banking App";
+}
+
+<div class="row" style="text-align:center">
+    <h1>Welcome to Banking App</h1>
+</div>
+<br />
+<br />
+<div class="row" style="text-align:center">
+    <div class="col-12"> 
+       
+            <p>
+                View all Accounts  @Html.ActionLink("here", "Index","Accounts")
+            </p>
+           
+        
+    </div>
+    <div class="col-12">
+          <p>
+            Initiate a Transfer  @Html.ActionLink("here", "Create","Transactions")
+            </p>
+        
+    </div>
+    <div class="col-12">
+        <p>
+            View all transactions  @Html.ActionLink("here", "Index","Transactions")
+        </p>
+       
+    </div>
+</div>
