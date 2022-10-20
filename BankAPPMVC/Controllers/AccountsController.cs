@@ -109,7 +109,7 @@ namespace BankApp.Controllers
                 catch (Exception e)
                 {
                     
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                    ModelState.AddModelError("", "Unable to save changes.");
                 }
             var accountToUpdate = db.Accounts.Find(account.accountnumber);
             return View(accountToUpdate);
@@ -124,7 +124,7 @@ namespace BankApp.Controllers
             }
             if (saveChangesError.GetValueOrDefault())
             {
-                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
+                ViewBag.ErrorMessage = "Delete failed.";
             }
             var account = db.Accounts.Find(accountnumber);
             if (account == null)
