@@ -1,21 +1,29 @@
 using BankApp.Data;
 using BankApp.Models;
-using Microsoft.AspNetCore.Identity;
+using MessagesAPI.ExtensionMethods;
 using Microsoft.EntityFrameworkCore;
 
 
 
 var builder = WebApplication.CreateBuilder(args);
 
+ 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<BankContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+ 
+
+ 
 
 
-builder.Services.AddDbContext<BankContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
+builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
 

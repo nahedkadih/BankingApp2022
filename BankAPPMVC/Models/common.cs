@@ -167,32 +167,7 @@ namespace BankApp.Models
         public decimal ToAccountBalance { get; set; }
     }
 
-    public class Helper
-    {
-        public static void InitializeData(IServiceProvider serviceProvider)
-        {
-            var context = serviceProvider.GetService<BankContext>();
-
-
-            if (!context.Users.Any())
-            {
-                var users = new List<User>
-                {
-                   new User
-                   {
-                       userId = "User_1",// for test only  Guid.NewGuid().ToString("N").ToUpper(),
-                       name = "Nader Ssam",
-                       date_created = DateTime.Now
-                   }
-                };
-                context.AddRange(users);
-                context.SaveChangesAsync();
-            }
-           
-           
-        }
-  
-    }
+    
     
 
 }

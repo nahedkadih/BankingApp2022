@@ -9,10 +9,13 @@ namespace BankApp.Controllers
 {
     public class AccountsController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
         private readonly BankContext db;
-        public AccountsController(BankContext context)
+
+        public AccountsController(ILogger<HomeController> logger, BankContext context)
         {
             db = context;
+            _logger = logger;
         }
 
         // GET: Student
@@ -156,7 +159,7 @@ namespace BankApp.Controllers
             }
             catch (Exception e)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
+                
                 return RedirectToAction("Delete", new { accountnumber = accountnumber, saveChangesError = true });
             }
             return RedirectToAction("Index");

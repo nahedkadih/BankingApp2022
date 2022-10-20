@@ -16,10 +16,13 @@ namespace BankApp.Controllers
 {
     public class TransactionsController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
         private readonly BankContext db;
-        public TransactionsController(BankContext context)
+
+        public TransactionsController(ILogger<HomeController> logger, BankContext context)
         {
             db = context;
+            _logger = logger;
         }
 
         // GET: Student
