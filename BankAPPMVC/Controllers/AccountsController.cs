@@ -4,40 +4,40 @@ using System.Diagnostics;
 using BankApp.Data;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
+using bankApp.Services;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace BankApp.Controllers
 {
     public class AccountsController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly BankContext db;
+        private readonly ILogger<AccountsController> _logger; 
+        IAccountService  accountService;
 
-        public AccountsController(ILogger<HomeController> logger, BankContext context)
+        public AccountsController(IAccountService _accountService, ILogger<AccountsController> logger)
         {
-            db = context;
             _logger = logger;
+            accountService = _accountService;
         }
 
-        // GET: Student
-        public ViewResult Index()
-        {
-              
+     
 
-            var accounts = from s in db.Accounts
-                           select s;
-             
+        // GET: Student
+        public async Task<ActionResult> Index()
+        { 
+            var accounts =  await  accountService.getUserAccounts("User_1") ; 
             return View(accounts);
         }
 
 
         // GET: Student/Details/5
-        public ActionResult Details(string accountnumber)
+        public async Task<ActionResult> Details(string accountnumber)
         {
             if (string.IsNullOrEmpty(accountnumber))
             {
                 return BadRequest();
             }
-            var account = db.Accounts.Find(accountnumber);
+            var account = await accountService.getAccount(accountnumber) ;
             if (account == null)
             {
                 return NotFound();
@@ -53,45 +53,44 @@ namespace BankApp.Controllers
  
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Account account)
+        public async Task<ActionResult> Create(Account account)
         {
             try
             {
                 if (ModelState.IsValid)
-                { 
-                    db.Accounts.Add(account);
-                    db.SaveChanges();
+                {
+                    var _account = await  accountService.createAccount(account) ; 
                     return RedirectToAction("Index");
                 }
             }
             catch ( Exception e)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            { 
+                ModelState.AddModelError("", "Unable to save changes.");
             }
             return View(account);
         }
 
 
         // GET: Student/Edit/5
-        public IActionResult Edit(string  accountnumber)
+        public async Task<ActionResult> Edit(string  accountnumber)
         {
             if ( string.IsNullOrEmpty(accountnumber))
             {
                 return   BadRequest();
             }
-            var account = db.Accounts.Find(accountnumber);
-            if (account == null)
+            var _account = await accountService.getAccount(accountnumber);
+             
+            if (_account == null)
             {
                 return NotFound();
             }  
-            return View(account);
+            return View(_account);
         }
 
         
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(Account  account  )
+        public async Task<ActionResult> EditPost(Account  account  )
         {
             if (account is null)
             {
@@ -99,24 +98,21 @@ namespace BankApp.Controllers
             }
          
 
-              try
-              {
-                db.Accounts.Update(account);
-                db.SaveChanges();
-
-                    return RedirectToAction("Index");
-                }
-                catch (Exception e)
-                {
-                    
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                }
-            var accountToUpdate = db.Accounts.Find(account.accountnumber);
+            try
+            {
+                var _account = await accountService.updateAccount(account) ;
+                return RedirectToAction("Index");
+             }
+            catch (Exception e)
+            {   
+                ModelState.AddModelError("", "Unable to save changes.");
+            }
+            var accountToUpdate = accountService.getAccount(account.accountnumber);
             return View(accountToUpdate);
         }
 
         // GET: Student/Delete/5
-        public ActionResult Delete(string  accountnumber, bool? saveChangesError = false)
+        public async Task<ActionResult> Delete(string  accountnumber, bool? saveChangesError = false)
         {
             if (string.IsNullOrEmpty(accountnumber))
             {
@@ -124,35 +120,30 @@ namespace BankApp.Controllers
             }
             if (saveChangesError.GetValueOrDefault())
             {
-                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
+                ViewBag.ErrorMessage = "Delete failed.";
             }
-            var account = db.Accounts.Find(accountnumber);
-            if (account == null)
+            var _account = await accountService.getAccount(accountnumber) ; 
+            if (_account == null)
             {
                 return NotFound();
             }
-            return View(account);
+            return View(_account);
         }
 
-        // POST: Student/Delete/5
+         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string accountnumber)
+        public async Task<ActionResult> Delete(string accountnumber)
         {
             if (string.IsNullOrEmpty(accountnumber))
             {
                 return BadRequest();
-            }
+            } 
             try
             {
-                var account = db.Accounts.Find(accountnumber);
-                if (account !=null)
-                {
-                    db.Accounts.Remove(account);
-                    db.SaveChanges();
-
-                } else
-                {
+                var _IsDeeleted = await accountService.deleteAccount(accountnumber) ; 
+                if ( _IsDeeleted < 1  )
+                { 
                     return BadRequest();
                 }
               
@@ -164,13 +155,6 @@ namespace BankApp.Controllers
             }
             return RedirectToAction("Index");
         }
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

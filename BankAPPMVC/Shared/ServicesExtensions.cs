@@ -5,13 +5,15 @@ using BankApp.Data;
 using BankApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-
-namespace MessagesAPI.ExtensionMethods;
+using bankApp.Services;
 
 public static class ServicesExtensions
 { 
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, ConfigurationManager configuration)
-    { 
+    {
+        services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<ITransactionsService, TransactionsService>();
+
         var serviceProvider = services.BuildServiceProvider(); 
         var context = serviceProvider.GetService<BankContext>();
 

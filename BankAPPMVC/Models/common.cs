@@ -138,9 +138,9 @@ namespace BankApp.Models
         [Required] 
         public string SelectedtoAccount { get; set; } = String.Empty;
        
-        public IQueryable<Account>? fromAccount { get; set; }
-   
-        public IQueryable<Account>? toAccount { get; set; }
+        public IEnumerable<Account>? fromAccount { get; set; }
+
+        public IEnumerable<Account>? toAccount { get; set; }
         [Required]
         [Range(0.01, 100000000, ErrorMessage = "Amount must be greter than zero !")] 
         // [Range(typeof(decimal), "0", "999999999")]
