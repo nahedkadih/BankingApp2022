@@ -1,4 +1,4 @@
-﻿namespace MessagesAPI.ExtensionMethods;
+﻿ 
 
 public static class WebApplicationExtensions
 {

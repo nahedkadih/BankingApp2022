@@ -49,14 +49,14 @@ public class BankAppDataInitializer
 
     private static async Task GenerateData(BankContext context)
     {
-        if (!context.Users.Any(s => s.userId == "User_4"))
+        if (!context.Users.Any(s => s.userId == "User_1"))
         {
             var users = new List<User>
                 {
                    new User
                    {
-                       userId = "User_4",// for test only  Guid.NewGuid().ToString("N").ToUpper(),
-                       name = "Nader Ssam",
+                       userId = "User_1",// for test only  Guid.NewGuid().ToString("N").ToUpper(),
+                       name = "Nader Test",
                        date_created = DateTime.Now
                    }
                 };
