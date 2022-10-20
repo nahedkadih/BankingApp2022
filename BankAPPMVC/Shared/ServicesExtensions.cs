@@ -5,8 +5,7 @@ using BankApp.Data;
 using BankApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-
-namespace MessagesAPI.ExtensionMethods;
+ 
 
 public static class ServicesExtensions
 { 
