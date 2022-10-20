@@ -1,4 +1,4 @@
-/****** Object:  Database [BankPPP]    Script Date: 10/19/2022 4:09:52 PM ******/
+/****** Object:  Database [BankApp]    Script Date: 10/19/2022 4:09:52 PM ******/
   
  
 /****** Object:  Table [dbo].[Accounts]    Script Date: 10/19/2022 4:09:52 PM ******/

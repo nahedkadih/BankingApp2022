@@ -1,8 +1,8 @@
-﻿using BankPPP.Models;
+﻿using BankApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace BankPPP.Controllers
+namespace BankApp.Controllers
 {
     public class HomeController : Controller
     {

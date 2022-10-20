@@ -1,8 +1,8 @@
-﻿using BankPPP.Models;
+﻿using BankApp.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Metrics;
 
-namespace BankPPP.Data
+namespace BankApp.Data
 {
     public class BankContext : DbContext
     {

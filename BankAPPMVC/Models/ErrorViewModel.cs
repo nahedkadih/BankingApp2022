@@ -1,4 +1,4 @@
-namespace BankPPP.Models
+namespace BankApp.Models
 {
     public class ErrorViewModel
     {

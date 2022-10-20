@@ -1,5 +1,5 @@
-using BankPPP.Data;
-using BankPPP.Models;
+using BankApp.Data;
+using BankApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

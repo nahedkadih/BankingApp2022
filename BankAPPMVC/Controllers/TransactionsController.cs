@@ -1,7 +1,7 @@
-﻿using BankPPP.Models;
+﻿using BankApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using BankPPP.Data;
+using BankApp.Data;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Metrics;
@@ -12,7 +12,7 @@ using Humanizer;
 using Microsoft.Data.SqlClient;
 using System.Linq;
 
-namespace BankPPP.Controllers
+namespace BankApp.Controllers
 {
     public class TransactionsController : Controller
     {

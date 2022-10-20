@@ -1,11 +1,11 @@
-﻿using BankPPP.Models;
+﻿using BankApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using BankPPP.Data;
+using BankApp.Data;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
 
-namespace BankPPP.Controllers
+namespace BankApp.Controllers
 {
     public class AccountsController : Controller
     {

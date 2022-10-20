@@ -5,10 +5,10 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 using System.Diagnostics.Metrics;
-using BankPPP.Data;
+using BankApp.Data;
 using Microsoft.AspNetCore.Identity;
 
-namespace BankPPP.Models
+namespace BankApp.Models
 {
     
    
